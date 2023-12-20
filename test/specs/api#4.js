@@ -2,7 +2,7 @@ const axios = require('axios');
 const assert = require('assert');
 
 describe('Check № 4', () => {
-    it('should send POST request to create post with userId=1 and random body and random title (/posts).', async () => {
+    it('should Send POST request to create post with userId=1 and random body and random title (/posts).', async () => {
         const postTitle = 'AlexExample';
         const postBody = 'example_body';
         const userId = 1;
