@@ -1,11 +1,13 @@
-const axios = require('axios');
 const assert = require('assert');
+const ApiClass = require('../pageobjects/apiClass.js');
+
 
 describe('Check № 1', () => {
+    const apiClass = new ApiClass();
+
     it('should Send GET Request to get all posts (/posts).', async () => {
-        
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-       console.log('Status Code:', response.statusCode);
+        const response = await apiClass.getAllPosts();
+        console.log('Status Code:', response.statusCode);
         assert.strictEqual(response.status, 200, 'Expected status code 200');
 
         try {
@@ -19,6 +21,5 @@ describe('Check № 1', () => {
         sortedPosts.sort((a, b) => a.id - b.id);
 
         assert.deepStrictEqual(posts, sortedPosts, 'Posts are not sorted in ascending order by id');
-
     });
 });

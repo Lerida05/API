@@ -1,9 +1,10 @@
-const axios = require('axios');
 const assert = require('assert');
+const ApiClass = require('../pageobjects/apiClass.js');
 
 describe('Check № 5', () => {
     it('should Send GET request to get users (/users).', async () => {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+        const apiClass = new ApiClass();
+        const response = await apiClass.getRequest('/users');
 
         assert.strictEqual(response.status, 200, 'Expected status code 200');
 
