@@ -6,9 +6,7 @@ describe('Check № 3', () => {
         const postId = 150;
         try {
             const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`);
-            
             console.log('Response:', response);
-
             assert.strictEqual(response.status, 404, 'Expected status code 404');
         } catch (error) {
             console.log('Error:', error.response);
