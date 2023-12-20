@@ -17,7 +17,6 @@ describe('Check № 1', () => {
         const posts = response.data;
         const sortedPosts = [...posts];
         sortedPosts.sort((a, b) => a.id - b.id);
-
         assert.deepStrictEqual(posts, sortedPosts, 'Posts are not sorted in ascending order by id');
 
     });
