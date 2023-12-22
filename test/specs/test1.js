@@ -5,7 +5,7 @@ const ApiClass = require('../pageobjects/apiClass.js');
 describe('Check № 1', () => {
     const apiClass = new ApiClass();
 
-    it('should Send GET Request to get all posts (/posts).', async () => {
+    it('should Send GET Request to get all posts', async () => {
         const response = await apiClass.getAllPosts();
         console.log('Status Code:', response.statusCode);
         assert.strictEqual(response.status, 200, 'Expected status code 200');

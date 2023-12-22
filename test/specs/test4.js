@@ -2,7 +2,7 @@ const assert = require('assert');
 const ApiClass = require('../pageobjects/apiClass.js');
 
 describe('Check № 4', () => {
-    it('should Send POST request to create post with userId=1 and random body and random title (/posts).', async () => {
+    it('should Send POST request to create post with needed data', async () => {
         const apiClass = new ApiClass();
         const postTitle = 'AlexExample';
         const postBody = 'example_body';
@@ -14,7 +14,7 @@ describe('Check № 4', () => {
             userId: userId
         };
 
-        const response = await apiClass.axiosInstance.post('/posts', postData);
+        const response = await apiClass.createPost(postData);
 
         console.log('Status Code:', response.status);
         console.log('Response Data:', response.data);

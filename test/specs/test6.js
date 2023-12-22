@@ -1,17 +1,20 @@
 const assert = require('assert');
 const ApiClass = require('../pageobjects/apiClass.js');
+const testData = require('../pageobjects/testData.js');
 
 describe('Check № 6', () => {
-    it('should Send GET request to get user with id=5 (/users/5).', async () => {
+    it('should Send GET request to get user with id=5', async () => {
         const apiClass = new ApiClass();
-        const userResponse = await apiClass.getRequest('/users/5');
+        const userId = testData.userIdToCheck;
+
+        const userResponse = await apiClass.getRequest(`/users/${userId}`);
         
         console.log('User Response', userResponse.data);
         assert.strictEqual(userResponse.status, 200, 'Expected status code 200');
 
         const userData = userResponse.data;
 
-        assert.strictEqual(userData.id, 5, 'Incorrect user id');
+        assert.strictEqual(userData.id, userId, 'Incorrect user id');
         assert.strictEqual(userData.name, 'Chelsey Dietrich', 'Incorrect name');
         assert.strictEqual(userData.username, 'Kamren', 'Incorrect username');
         assert.strictEqual(userData.email, 'Lucio_Hettinger@annie.ca', 'Incorrect email');

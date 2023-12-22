@@ -2,9 +2,9 @@ const assert = require('assert');
 const ApiClass = require('../pageobjects/apiClass.js');
 
 describe('Check № 5', () => {
-    it('should Send GET request to get users (/users).', async () => {
+    it('should Send GET request to get users', async () => {
         const apiClass = new ApiClass();
-        const response = await apiClass.getRequest('/users');
+        const response = await apiClass.getAllUsers();
 
         assert.strictEqual(response.status, 200, 'Expected status code 200');
 
