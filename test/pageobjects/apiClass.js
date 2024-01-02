@@ -20,6 +20,11 @@ class ApiClass extends BaseApiClass {
         return this.getRequest(url);
     }
 
+    async getAllPosts() {
+        const url = '/posts';
+        return this.getRequest(url);
+    }
+
     async createPost(postData) {
         const url = '/posts';
         return this.postRequest(url, postData);
