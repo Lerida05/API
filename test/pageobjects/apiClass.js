@@ -1,29 +1,13 @@
 const axios = require('axios');
-const apiConfig = require('./apiConfig.js');
+const apiConfig = require('../pageobjects/apiConfig.js');
+const BaseApiClass = require('../pageobjects/baseApiClass.js');
 
-class ApiClass {
+class ApiClass extends BaseApiClass {
     constructor() {
+        super();
         this.axiosInstance = axios.create({
-            baseURL: apiConfig.baseURL,
+            baseURL: apiConfig.baseURL
         });
-    }
-
-    async getRequest(url) {
-        try {
-            const response = await this.axiosInstance.get(url);
-            return response;
-        } catch (error) {
-            throw error;
-        }
-    }
-
-    async postRequest(url, data) {
-        try {
-            const response = await this.axiosInstance.post(url, data);
-            return response;
-        } catch (error) {
-            throw error;
-        }
     }
 
     async getPostById(postId) {

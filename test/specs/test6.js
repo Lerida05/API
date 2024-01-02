@@ -1,33 +1,23 @@
 const assert = require('assert');
 const ApiClass = require('../pageobjects/apiClass.js');
 const testData = require('../pageobjects/testData.js');
+const { userResponse, userWithId5 } = require('../specs/test5.js');
 
 describe('Check № 6', () => {
     it('should Send GET request to get user with id=5', async () => {
         const apiClass = new ApiClass();
         const userId = testData.userIdToCheck;
 
-        const userResponse = await apiClass.getRequest(`/users/${userId}`);
-        
-        console.log('User Response', userResponse.data);
-        assert.strictEqual(userResponse.status, 200, 'Expected status code 200');
+        const userResponseFromTest6 = await apiClass.getRequest(`/users/${userId}`);
 
-        const userData = userResponse.data;
+        console.log('User Response from Test 6:', userResponseFromTest6.data);
+        console.log('Expected User Data from Test 5:', userWithId5);
 
-        assert.strictEqual(userData.id, userId, 'Incorrect user id');
-        assert.strictEqual(userData.name, 'Chelsey Dietrich', 'Incorrect name');
-        assert.strictEqual(userData.username, 'Kamren', 'Incorrect username');
-        assert.strictEqual(userData.email, 'Lucio_Hettinger@annie.ca', 'Incorrect email');
-        assert.strictEqual(userData.address.street, 'Skiles Walks', 'Incorrect street');
-        assert.strictEqual(userData.address.suite, 'Suite 351', 'Incorrect suite');
-        assert.strictEqual(userData.address.city, 'Roscoeview', 'Incorrect city');
-        assert.strictEqual(userData.address.zipcode, '33263', 'Incorrect zipcode');
-        assert.strictEqual(userData.address.geo.lat, '-31.8129', 'Incorrect latitude');
-        assert.strictEqual(userData.address.geo.lng, '62.5342', 'Incorrect longitude');
-        assert.strictEqual(userData.phone, '(254)954-1289', 'Incorrect phone');
-        assert.strictEqual(userData.website, 'demarco.info', 'Incorrect website');
-        assert.strictEqual(userData.company.name, 'Keebler LLC', 'Incorrect company name');
-        assert.strictEqual(userData.company.catchPhrase, 'User-centric fault-tolerant solution', 'Incorrect catchPhrase');
-        assert.strictEqual(userData.company.bs, 'revolutionize end-to-end systems', 'Incorrect bs');
+        assert.strictEqual(userResponseFromTest6.status, 200, 'Expected status code 200');
+
+        const userData = userResponseFromTest6.data;
+
+        // Compare the entire objects with deep equality
+        assert.deepStrictEqual(userData, userWithId5, 'User data does not match the expected data');
     });
 });
